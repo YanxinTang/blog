@@ -11,6 +11,13 @@ type ConfigStruct struct {
 		Username string `json:"username"`
 		Password string `json:"password"`
 	} `json:"auth"`
+	Mysql struct {
+		Host     string `json:"host"`
+		Port     string `json:"port"`
+		User     string `json:"user"`
+		Password string `json:"password"`
+		Database string `json:"database"`
+	} `json:"mysql"`
 }
 
 var Config ConfigStruct
