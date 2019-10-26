@@ -1,0 +1,30 @@
+{{define "blog/index"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "head" .}}
+  </head>
+  <body>
+    {{template "header" .}}
+    <section class="container">
+      {{range $article := .articles}}
+      <article class="article">
+        <div class="article-header">
+          <a href="/articles/{{$article.ID}}" class="article-header__title">{{$article.Title}}</a>
+          {{if $article.Category.ID}}
+          <div class="article-header__category">#{{$article.Category.Name}}</div>
+          {{end}}
+          <div class="article-created-at flex-right">
+            {{$article.UpdatedAt|Date}}
+          </div>
+        </div>
+        <div class="article-body">
+          {{$article.Content}}
+        </div>
+      </article>
+      {{end}}
+      {{.pagination}}
+    </section>
+  </body>
+</html>
+{{end}}
