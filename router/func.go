@@ -1,7 +1,9 @@
 package router
 
 import (
+	"bytes"
 	"html/template"
+	"regexp"
 	"time"
 
 	"github.com/microcosm-cc/bluemonday"
@@ -13,7 +15,12 @@ func Date(t time.Time) string {
 }
 
 func Markdown(t string) string {
-	return string(bluemonday.UGCPolicy().SanitizeBytes(blackfriday.Run([]byte(t))))
+	input := []byte(t)
+	input = bytes.Replace(input, []byte("\r"), nil, -1)
+	output := blackfriday.Run(input)
+	p := bluemonday.UGCPolicy()
+	p.AllowAttrs("class").Matching(regexp.MustCompile("^language-[a-zA-Z0-9]+$")).OnElements("code")
+	return string(p.SanitizeBytes(output))
 }
 
 func Safe(t string) template.HTML {
