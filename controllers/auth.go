@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/YanxinTang/blog/config"
+	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -32,22 +33,17 @@ func Login(c *gin.Context) {
 	if err := c.ShouldBind(&user); err != nil {
 		session.AddFlash("无效的用户信息", "errorMsgs")
 		session.Save()
-		c.Error(err).SetType(http.StatusBadRequest)
+		c.Error(err).SetType(http.StatusBadRequest).SetMeta(middleware.BadRequestMeta{"/login/"})
 		return
 	}
 
-	if user.Username != config.Config.Auth.Username {
-		session.AddFlash("用户名错误", "errorMsgs")
-		session.Save()
-		c.Error(errors.New("用户名错误")).SetType(http.StatusBadRequest)
-		return
-	}
-	if user.Password != config.Config.Auth.Password {
+	if user.Username != config.Config.Auth.Username || user.Password != config.Config.Auth.Password {
 		session.AddFlash("密码错误", "errorMsgs")
 		session.Save()
-		c.Error(errors.New("密码错误")).SetType(http.StatusBadRequest)
+		c.Error(errors.New("密码错误")).SetType(http.StatusBadRequest).SetMeta(middleware.BadRequestMeta{"/login/"})
 		return
 	}
+
 	session.Set("login", true)
 	session.Save()
 	c.Redirect(http.StatusSeeOther, "/admin/")
