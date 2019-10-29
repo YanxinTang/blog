@@ -7,6 +7,9 @@ import (
 )
 
 type ConfigStruct struct {
+	Site struct {
+		Name string `json:"name"`
+	}
 	Auth struct {
 		Username string `json:"username"`
 		Password string `json:"password"`

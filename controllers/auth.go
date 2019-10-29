@@ -7,21 +7,22 @@ import (
 	"github.com/YanxinTang/blog/config"
 	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
+	"github.com/YanxinTang/blog/utils"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
 func LoginView(c *gin.Context) {
-
 	session := sessions.Default(c)
 	if session.Get("login") == true {
-		c.Redirect(http.StatusTemporaryRedirect, "/app")
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/")
 		return
 	}
 	errorMsgs := session.Flashes("errorMsgs")
 	successMsgs := session.Flashes("successMsgs")
 	session.Save()
 	c.HTML(http.StatusOK, "blog/login", gin.H{
+		"title":       utils.SiteTitle("登录", siteName),
 		"errorMsgs":   errorMsgs,
 		"successMsgs": successMsgs,
 	})

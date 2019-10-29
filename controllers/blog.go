@@ -9,15 +9,12 @@ import (
 
 	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
+	"github.com/YanxinTang/blog/utils"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
 const PerPage uint64 = 10
-
-func App(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
-}
 
 func Articles(c *gin.Context) {
 	pageParam := c.Param("page")
@@ -57,8 +54,8 @@ func Articles(c *gin.Context) {
 	count := models.ArticlesCount()
 	session := sessions.Default(c)
 	pagination := NewPagination(count, page, PerPage, "/page/%d").Init()
-
 	c.HTML(http.StatusOK, "blog/index", gin.H{
+		"title":      siteName,
 		"login":      session.Get("login"),
 		"articles":   articles,
 		"count":      count,
@@ -114,6 +111,7 @@ func ArticleView(c *gin.Context) {
 	session.Save()
 
 	c.HTML(http.StatusOK, "blog/article", gin.H{
+		"title":       utils.SiteTitle(article.Title, siteName),
 		"login":       session.Get("login"),
 		"article":     article,
 		"comments":    comments,
