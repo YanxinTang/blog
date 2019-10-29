@@ -1,4 +1,7 @@
 {
+  "site": {
+    "name": "Simple Blog"
+  },
   "auth": {
     "username": "root",
     "password": "root"

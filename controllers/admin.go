@@ -8,6 +8,7 @@ import (
 
 	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
+	"github.com/YanxinTang/blog/utils"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +16,7 @@ import (
 func DashBoardView(c *gin.Context) {
 	session := sessions.Default(c)
 	c.HTML(http.StatusOK, "admin/dashboard", gin.H{
+		"title": utils.SiteTitle("总览", siteName),
 		"login": session.Get("login"),
 	})
 }
@@ -77,6 +79,7 @@ func AddArticleView(c *gin.Context) {
 	successMsgs := session.Flashes("successMsgs")
 	session.Save()
 	c.HTML(http.StatusOK, "admin/addArticle", gin.H{
+		"title":       utils.SiteTitle("新增文章", siteName),
 		"login":       session.Get("login"),
 		"categories":  categories,
 		"errorMsgs":   errorMsgs,
@@ -173,6 +176,7 @@ func UpdateArticleView(c *gin.Context) {
 	successMsgs := session.Flashes("successMsgs")
 	session.Save()
 	c.HTML(http.StatusOK, "admin/updateArticle", gin.H{
+		"title":       utils.SiteTitle("更新文章", siteName),
 		"login":       session.Get("login"),
 		"article":     article,
 		"categories":  categories,
@@ -235,6 +239,8 @@ func CategoriesView(c *gin.Context) {
 	successMsgs := session.Flashes("successMsgs")
 	session.Save()
 	c.HTML(http.StatusOK, "admin/categories", gin.H{
+		"title":       utils.SiteTitle("分类管理", siteName),
+		"login":       session.Get("login"),
 		"categories":  categories,
 		"errorMsgs":   errorMsgs,
 		"successMsgs": successMsgs,
