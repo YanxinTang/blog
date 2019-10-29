@@ -16,10 +16,6 @@ import (
 
 const PerPage uint64 = 10
 
-func App(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
-}
-
 func Articles(c *gin.Context) {
 	pageParam := c.Param("page")
 	var page uint64

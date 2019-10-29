@@ -21,43 +21,6 @@ func DashBoardView(c *gin.Context) {
 	})
 }
 
-func GetArticle(c *gin.Context) {
-	var post models.Article
-	articleID, err := strconv.ParseUint(c.Param("articleID"), 10, 64)
-
-	if err != nil {
-		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{
-			"message": err.Error(),
-		})
-		return
-	}
-
-	row, err := models.GetArticle(articleID)
-	if err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"message": err.Error(),
-		})
-		return
-	}
-	if err := row.Scan(&post.ID, &post.CategoryID, &post.Title, &post.Content, &post.CreatedAt, &post.UpdatedAt); err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"message": err.Error(),
-		})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{
-		"message": "ok",
-		"data": gin.H{
-			"postID":     post.ID,
-			"title":      post.Title,
-			"categoryID": post.CategoryID,
-			"content":    post.Content,
-			"createdAt":  post.CreatedAt,
-			"updatedAt":  post.UpdatedAt,
-		},
-	})
-}
-
 func AddArticleView(c *gin.Context) {
 	var categories []*models.Category
 	categoriesRows, err := models.GetCategories("id", "name")

@@ -15,7 +15,7 @@ import (
 func LoginView(c *gin.Context) {
 	session := sessions.Default(c)
 	if session.Get("login") == true {
-		c.Redirect(http.StatusTemporaryRedirect, "/app")
+		c.Redirect(http.StatusTemporaryRedirect, "/admin/")
 		return
 	}
 	errorMsgs := session.Flashes("errorMsgs")
