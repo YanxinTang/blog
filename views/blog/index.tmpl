@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="article-body">
-          {{$article.Content}}
+          {{$article.Content|Summary|Safe}}
         </div>
       </article>
       {{end}}

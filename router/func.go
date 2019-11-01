@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/YanxinTang/blog/utils"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 )
@@ -25,4 +26,11 @@ func Markdown(t string) string {
 
 func Safe(t string) template.HTML {
 	return template.HTML(t)
+}
+
+func Summary(t string) string {
+	var render utils.SummaryRender
+	input := bytes.Replace([]byte(t), []byte("\r"), nil, -1)
+	output := blackfriday.Run(input, blackfriday.WithRenderer(render))
+	return string(bluemonday.UGCPolicy().SanitizeBytes(output))
 }
