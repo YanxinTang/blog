@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/YanxinTang/blog/config"
 	"github.com/YanxinTang/blog/utils"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
@@ -34,4 +35,8 @@ func Summary(t string) string {
 	input := bytes.Replace([]byte(t), []byte("\r"), nil, -1)
 	output := blackfriday.Run(input, blackfriday.WithRenderer(utils.NewSummaryRenderer()))
 	return string(bluemonday.UGCPolicy().SanitizeBytes(output))
+}
+
+func Config() config.ConfigStruct {
+	return config.Config
 }
