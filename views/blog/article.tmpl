@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     {{template "head" .}}
+    <link rel="stylesheet" href="/static/css/chroma.css">
   </head>
   <body>
     {{template "header" .}}
@@ -65,7 +66,7 @@
               </div>
             </div>
             <div class="comment-body">
-              <div class="comment-body__content">
+              <div class="comment-body__content markdown">
                 {{$comment.Content|Markdown|Safe}}
               </div>
             </div>
