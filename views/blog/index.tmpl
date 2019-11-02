@@ -18,8 +18,8 @@
             {{$article.UpdatedAt|Date}}
           </div>
         </div>
-        <div class="article-body">
-          {{$article.Content}}
+        <div class="article-body markdown">
+          {{$article.Content|Summary|Safe}}
         </div>
       </article>
       {{end}}

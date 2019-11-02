@@ -83,7 +83,6 @@
   margin-left: 1rem;
   font-size: 1rem;
   color: #4A4A4A;
-  font-family: '仿宋';
 }
 
 .article .article-header .article-created-at {
@@ -103,7 +102,6 @@ a.article-header__title:hover {
 }
 
 .article .article-body {
-  font-family: '仿宋';
   color: #555;
   margin: 1rem 0;
 }
@@ -217,7 +215,6 @@ a.article-header__title:hover {
 }
 
 .comment-body__content {
-  font-family: '仿宋';
 }
 
 .table {

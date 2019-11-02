@@ -20,6 +20,7 @@ func SetupRouter() *gin.Engine {
 		"Date":     Date,
 		"Safe":     Safe,
 		"Markdown": Markdown,
+		"Summary":  Summary,
 	})
 	r.LoadHTMLGlob("views/**/*.tmpl")
 	r.Static("appbuild", "app/build")
