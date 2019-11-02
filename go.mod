@@ -3,6 +3,7 @@ module github.com/YanxinTang/blog
 go 1.13
 
 require (
+	github.com/alecthomas/chroma v0.6.8
 	github.com/gin-contrib/sessions v0.0.1
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-sql-driver/mysql v1.4.1

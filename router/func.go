@@ -16,11 +16,13 @@ func Date(t time.Time) string {
 }
 
 func Markdown(t string) string {
-	input := []byte(t)
-	input = bytes.Replace(input, []byte("\r"), nil, -1)
-	output := blackfriday.Run(input)
+	input := bytes.Replace([]byte(t), []byte("\r"), nil, -1)
+	cr := utils.NewChromaRenderer()
+	output := blackfriday.Run(input, blackfriday.WithRenderer(cr))
 	p := bluemonday.UGCPolicy()
 	p.AllowAttrs("class").Matching(regexp.MustCompile("^language-[a-zA-Z0-9]+$")).OnElements("code")
+	p.AllowAttrs("class").Globally()
+	p.AllowAttrs("style").OnElements("span", "p")
 	return string(p.SanitizeBytes(output))
 }
 
@@ -29,8 +31,7 @@ func Safe(t string) template.HTML {
 }
 
 func Summary(t string) string {
-	var render utils.SummaryRender
 	input := bytes.Replace([]byte(t), []byte("\r"), nil, -1)
-	output := blackfriday.Run(input, blackfriday.WithRenderer(render))
+	output := blackfriday.Run(input, blackfriday.WithRenderer(utils.NewSummaryRenderer()))
 	return string(bluemonday.UGCPolicy().SanitizeBytes(output))
 }
