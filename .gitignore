@@ -1,2 +1,4 @@
 *.local.*
 *.exe
+
+node_modules
