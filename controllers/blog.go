@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/YanxinTang/blog/config"
 	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
 	"github.com/YanxinTang/blog/utils"
@@ -113,6 +114,7 @@ func ArticleView(c *gin.Context) {
 	c.HTML(http.StatusOK, "blog/article", gin.H{
 		"title":       utils.SiteTitle(article.Title, siteName),
 		"login":       session.Get("login"),
+		"username":    config.Config.Auth.Username,
 		"article":     article,
 		"comments":    comments,
 		"errorMsgs":   errorMsgs,
