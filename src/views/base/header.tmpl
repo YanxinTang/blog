@@ -2,11 +2,7 @@
 <header class="header">
   <nav class="navbar">
     <a href="/" class="navbar-brand">
-      {{if Config.Site.Name}}
-        {{Config.Site.Name}}
-      {{else}}
-        Simple Blog
-      {{end}}
+      <img src="/static/images/logo.png" alt="Logo">
     </a>
     <ul class="navbar-nav flex-right">
       {{if .login}}
