@@ -11,14 +11,18 @@
       <article class="article">
         <div class="article-header">
           <a href="/articles/{{$article.ID}}" class="article-header__title">{{$article.Title}}</a>
-          {{if $article.Category.ID}}
-          <div class="article-header__category">#{{$article.Category.Name}}</div>
-          {{end}}
-          <div class="article-created-at flex-right">
-            {{$article.UpdatedAt|Date}}
+          <div class="article-header__meta">
+            <div class="article-header__category">
+              <i class="iconfont icon-tag"></i>
+              {{$article.Category.Name}}
+            </div>
+            <div class="article-header__date">
+              <i class="iconfont icon-time"></i>
+              {{$article.UpdatedAt|Date}}
+            </div>
           </div>
         </div>
-        <div class="article-body markdown">
+        <div class="article-summary markdown">
           {{$article.Content|Summary|Safe}}
         </div>
       </article>

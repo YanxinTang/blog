@@ -66,9 +66,15 @@
   
   .article-header {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     align-items: baseline;
+  }
+
+  .article-header__meta {
+    display: flex;
+    flex-flow: row nowrap;
+    color: #aaa;
   }
 
   .article-header__title {
@@ -80,20 +86,24 @@
   }
 
   .article-header__category {
-    margin-left: 1rem;
     font-size: 1rem;
-    color: #4A4A4A;
   }
 
-  .article-header .article-created-at {
-    color: #ccc;
+  .article-header__date {
+    margin-left: 1rem;
   }
 
   .article-body {
     color: #555;
     margin: 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e5e5;
   }
 
+  .article-body, .article-summary {
+    color: #555;
+    margin: 1rem 0;
+  }
   
   a.article-header__title {
     &:link {
@@ -164,6 +174,11 @@
     border: 1px solid #dcdfe6;
     font-size: 14px;
     font-family: helvetica neue,luxi sans,dejavu sans,Tahoma,hiragino sans gb,microsoft yahei,sans-serif;
+
+    &:read-only{
+      background: #f5f7fa;
+      border-color: #dcdfe6!important;
+    }
   }
   
   .form-group__content textarea {
@@ -276,6 +291,7 @@
   border-left: 3px solid red;
   background: #ffe5e5;
 }
+
 
 .message.success{
   border-left: 3px solid #42b983;

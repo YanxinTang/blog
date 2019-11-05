@@ -1,7 +1,14 @@
 .chroma {
+  max-width: 100%;
+  overflow: auto;
+
   .lntable {
     table-layout: auto;
     width: 100%;
+
+    tr>td:first-child {
+      display: none;
+    }
   }
 
   .lntable .lntd:first-child {
@@ -35,4 +42,12 @@
   .ln, .lnt {
     color: #1b1f234d;
   }
+}
+
+@media (min-width: 576px) {
+  .lntable {
+    tr>td:first-child {
+      display: table-cell!important;
+    }
+  } 
 }

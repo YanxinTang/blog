@@ -6,6 +6,7 @@
   "author": "tyx1703 <tyx1703@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "gulp start",
     "build": "gulp build"
   },
   "devDependencies": {

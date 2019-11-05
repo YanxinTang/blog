@@ -7,8 +7,8 @@ import minifyCss from 'gulp-clean-css';
 import htmlmin from 'gulp-htmlmin';
 
 const copyStaticFile = () => {
-  return gulp.src('src/static/images/**/*')
-    .pipe(gulp.dest('dist/static/images'));
+  return gulp.src('src/public/**/*')
+    .pipe(gulp.dest('dist/static/'));
 }
 
 const buildTmpl = () => {
@@ -23,6 +23,16 @@ const buildTmpl = () => {
 
 const build = gulp.parallel(buildTmpl, copyStaticFile);
 
+const start = () => {
+  return gulp.watch(['src/**/*.tmpl', 'src/assets/**/*.scss'], function bundleTemplate () {
+    return gulp.src('src/**/*.tmpl')
+      .pipe(useref({searchPath: 'src'}))
+      .pipe(gulpif('*.css', sass()))
+      .pipe(gulp.dest('dist'))
+  })
+}
+
 export {
+  start,
   build
 }
