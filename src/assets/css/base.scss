@@ -320,6 +320,18 @@
   color: #2c3e50;
 }
 
+.footer {
+  margin-top: 1cm;
+  padding: 1rem 0;
+  border-top: 1px solid #efefef;
+
+  .footer-link {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #2c3e50;
+  }
+}
+
 @media (min-width: 576px) {
   
 }
