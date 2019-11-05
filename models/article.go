@@ -26,7 +26,7 @@ func InsertArticle(article *Article) (sql.Result, error) {
 
 func GetArticle(articleID uint64, columns ...string) (*sql.Row, error) {
 	if len(columns) == 0 {
-		return db.QueryRow("SELECT * FROM article WHERE id = ?", articleID), nil
+		return db.QueryRow("SELECT article.*, category.name FROM article INNER  JOIN category ON article.category_id = category.id WHERE article.id = ?", articleID), nil
 	}
 	columnPlaceholder := utils.ColumnPlaceholder(columns...)
 	sql := fmt.Sprintf("SELECT %s FROM article WHERE id = ?", columnPlaceholder)
