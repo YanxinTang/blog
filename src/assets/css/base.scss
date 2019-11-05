@@ -298,6 +298,28 @@
   background: #ecf8f2;
 }
 
+.login-btn, .logout-btn {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  .iconfont {
+    font-size: 2rem;
+  }
+}
+
+.logout-btn {
+  color: #c3a93f;
+}
+.login-btn {
+  color: #2c3e50;
+}
+
 @media (min-width: 576px) {
   
 }

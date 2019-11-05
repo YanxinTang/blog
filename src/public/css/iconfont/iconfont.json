@@ -13,6 +13,13 @@
       "unicode_decimal": 58880
     },
     {
+      "icon_id": "88519",
+      "name": "sad",
+      "font_class": "sad",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
       "icon_id": "165584",
       "name": "time",
       "font_class": "time",
@@ -25,6 +32,13 @@
       "font_class": "tag",
       "unicode": "e65b",
       "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "9054848",
+      "name": "happy",
+      "font_class": "happy",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
     }
   ]
 }
