@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/YanxinTang/blog/config"
 	"github.com/YanxinTang/blog/middleware"
 	"github.com/YanxinTang/blog/models"
 	"github.com/YanxinTang/blog/utils"
@@ -80,7 +81,8 @@ func ArticleView(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "error/404", nil)
 		return
 	}
-	if err := row.Scan(&article.ID, &article.CategoryID, &article.Title, &article.Content, &article.CreatedAt, &article.UpdatedAt); err != nil {
+	var categoryName string
+	if err := row.Scan(&article.ID, &article.CategoryID, &article.Title, &article.Content, &article.CreatedAt, &article.UpdatedAt, &categoryName); err != nil {
 		c.Error(err).SetType(http.StatusNotFound)
 		return
 	}
@@ -111,12 +113,14 @@ func ArticleView(c *gin.Context) {
 	session.Save()
 
 	c.HTML(http.StatusOK, "blog/article", gin.H{
-		"title":       utils.SiteTitle(article.Title, siteName),
-		"login":       session.Get("login"),
-		"article":     article,
-		"comments":    comments,
-		"errorMsgs":   errorMsgs,
-		"successMsgs": successMsgs,
+		"title":        utils.SiteTitle(article.Title, siteName),
+		"login":        session.Get("login"),
+		"username":     config.Config.Auth.Username,
+		"article":      article,
+		"categoryName": categoryName,
+		"comments":     comments,
+		"errorMsgs":    errorMsgs,
+		"successMsgs":  successMsgs,
 	})
 }
 

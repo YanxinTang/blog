@@ -2,21 +2,21 @@
 <header class="header">
   <nav class="navbar">
     <a href="/" class="navbar-brand">
-      {{if Config.Site.Name}}
-        {{Config.Site.Name}}
-      {{else}}
-        Simple Blog
-      {{end}}
+      <img src="/static/images/logo.png" alt="Logo">
     </a>
     <ul class="navbar-nav flex-right">
       {{if .login}}
       <li class="nav-item">
         <form action="/logout" method="post">
-          <button>注销</button>
+          <button class="logout-btn" title="注销"><i class="iconfont icon-happy"></i></button>
         </form>
       </li>
       {{else}}
-      <li class="nav-item"><a href="/login">登录</a></li>
+      <li class="nav-item">
+        <a href="/login" class="login-btn" title="登录">
+          <i class="iconfont icon-sad"></i>
+        </a>
+      </li>
       {{end}}
     </ul>
   </nav>

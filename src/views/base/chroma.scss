@@ -1,0 +1,53 @@
+.chroma {
+  max-width: 100%;
+  overflow: auto;
+
+  .lntable {
+    table-layout: auto;
+    width: 100%;
+
+    tr>td:first-child {
+      display: none;
+    }
+  }
+
+  .lntable .lntd:first-child {
+    width: 1%;
+  }
+  
+  .kd, .k {
+    color: #d73a49;
+  }
+
+  .kt {
+    color: #e36209;
+  }
+
+  .kc {
+    color: #005cc5;
+  }
+
+  .nf {
+    color: #6f42c1;
+  }
+
+  .cm, .c1 {
+    color: #6a737d;
+  }
+
+  .o {
+    color: #d73a49;
+  }
+
+  .ln, .lnt {
+    color: #1b1f234d;
+  }
+}
+
+@media (min-width: 576px) {
+  .lntable {
+    tr>td:first-child {
+      display: table-cell!important;
+    }
+  } 
+}

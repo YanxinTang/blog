@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     {{template "head" .}}
-    <link rel="stylesheet" href="/static/css/chroma.css">
   </head>
   <body>
     {{template "header" .}}
@@ -11,11 +10,15 @@
       <article class="article">
         <div class="article-header">
           <h1 class="article-header__title">{{.article.Title}}</h1>
-          {{if .article.Category.ID}}
-          <div class="article-header__category">#{{.article.Category.Name}}</div>
-          {{end}}
-          <div class="article-created-at flex-right">
-            {{.article.UpdatedAt|Date}}
+          <div class="article-header__meta">
+            <div class="article-header__category">
+              <i class="iconfont icon-tag"></i>
+              {{.categoryName}}
+            </div>
+            <div class="article-header__date">
+              <i class="iconfont icon-time"></i>
+              {{.article.UpdatedAt|Date}}
+            </div>
           </div>
         </div>
         <div class="article-body markdown">
@@ -40,7 +43,11 @@
             <div class="form-group">
               <label class="form-group__label" for="usernameInput">昵称：</label>
               <div class="form-group__content">
+                {{if .login}}
+                <input id="usernameInput" type="text" name="username" value="{{.username}}" readonly>
+                {{else}}
                 <input id="usernameInput" type="text" name="username">
+                {{end}}
               </div>
             </div>
             <div class="form-group">
@@ -85,6 +92,10 @@
         </div>
       </section>
     </div>
+    {{template "footer"}}
+    <!-- build:js /static/js/article.min.js -->
+    <script src="article.js"></script>
+    <!-- endbuild -->
   </body>
 </html>
 {{end}}
