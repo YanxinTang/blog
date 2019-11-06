@@ -7,13 +7,13 @@ import minifyCss from 'gulp-clean-css';
 import htmlmin from 'gulp-htmlmin';
 
 const copyStaticFile = () => {
-  return gulp.src('src/public/**/*')
+  return gulp.src('public/**/*')
     .pipe(gulp.dest('dist/static/'));
 }
 
 const buildTmpl = () => {
   return gulp.src('src/**/*.tmpl')
-    .pipe(useref({searchPath: 'src'}))
+    .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', sass()))
     .pipe(gulpif('*.css', minifyCss()))
@@ -24,9 +24,9 @@ const buildTmpl = () => {
 const build = gulp.parallel(buildTmpl, copyStaticFile);
 
 const start = () => {
-  return gulp.watch(['src/**/*.tmpl', 'src/assets/**/*.scss'], function bundleTemplate () {
+  return gulp.watch(['src'], function bundleTemplate () {
     return gulp.src('src/**/*.tmpl')
-      .pipe(useref({searchPath: 'src'}))
+      .pipe(useref())
       .pipe(gulpif('*.css', sass()))
       .pipe(gulp.dest('dist'))
   })
