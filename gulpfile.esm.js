@@ -5,6 +5,7 @@ import useref from 'gulp-useref';
 import uglify from 'gulp-uglify';
 import minifyCss from 'gulp-clean-css';
 import htmlmin from 'gulp-htmlmin';
+import babel from 'gulp-babel';
 
 const copyStaticFile = () => {
   return gulp.src('public/**/*')
@@ -14,6 +15,7 @@ const copyStaticFile = () => {
 const buildTmpl = () => {
   return gulp.src('src/**/*.tmpl')
     .pipe(useref())
+    .pipe(gulpif('*.js', babel({ presets: ['@babel/env'] })))
     .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', sass()))
     .pipe(gulpif('*.css', minifyCss()))
