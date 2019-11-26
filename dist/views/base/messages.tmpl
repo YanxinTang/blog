@@ -1,0 +1,1 @@
+{{define "messages"}} {{range $errorMsg := .errorMsgs}}<div class="message error">{{$errorMsg}}</div>{{end}} {{range $successMsg := .successMsgs}}<div class="message success">{{$successMsg}}</div>{{end}} {{end}}
