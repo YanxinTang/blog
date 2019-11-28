@@ -19,7 +19,10 @@ const buildTmpl = () => {
     .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', sass()))
     .pipe(gulpif('*.css', minifyCss()))
-    .pipe(gulpif('*.tmpl', htmlmin({ collapseWhitespace: true })))
+    .pipe(gulpif('*.tmpl', htmlmin({
+      collapseWhitespace: true,
+      ignoreCustomFragments: [/{{[\s\S]*?}}/],
+    })))
     .pipe(gulp.dest('dist'))
 }
 
