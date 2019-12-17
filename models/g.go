@@ -22,7 +22,7 @@ func init() {
 	var err error
 	mysql := &config.Config.Mysql
 	connect := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=true",
+		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true",
 		mysql.User,
 		mysql.Password,
 		mysql.Host,

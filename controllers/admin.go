@@ -176,6 +176,7 @@ func UpdateArticle(c *gin.Context) {
 		session.AddFlash("更新失败", "errorMsgs")
 		session.Save()
 		c.Error(err).SetType(http.StatusBadRequest).SetMeta(middleware.BadRequestMeta{referer})
+		return
 	}
 
 	session.AddFlash("更新成功", "successMsgs")
