@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     {{template "head" .}}
+    {{template "admin/head" .}}
     <style>
       .table form{
         display: inline-block;
@@ -11,7 +12,8 @@
   </head>
   <body>
     {{template "header" .}}
-    <div class="container">
+      {{template "admin/sidebar" .}}
+      <div class="main">
       {{template "messages" .}}
       <table class="table">
         <colgroup>
@@ -51,8 +53,8 @@
           </tr>
         </tbody>
       </table>
-      
     </div>
+    {{template "admin/foot" .}}
   </body>
 </html>
 {{end}}

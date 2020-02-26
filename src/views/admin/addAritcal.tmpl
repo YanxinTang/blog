@@ -3,10 +3,12 @@
 <html lang="en">
   <head>
     {{template "head" .}}
+    {{template "admin/head" .}}
   </head>
   <body>
     {{template "header" .}}
-    <div class="container">
+    {{template "admin/sidebar" .}}
+    <div class="main">
       {{template "messages" .}}
       <div class="post-form">
         <form class="form" method="POST" action="/admin/articles/new">
@@ -36,6 +38,7 @@
         </form>
       </div>
     </div>
+    {{template "admin/foot" .}}
   </body>
 </html>
 {{end}}

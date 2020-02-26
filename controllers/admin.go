@@ -18,6 +18,7 @@ func DashBoardView(c *gin.Context) {
 	c.HTML(http.StatusOK, "admin/dashboard", gin.H{
 		"title": utils.SiteTitle("总览", siteName),
 		"login": session.Get("login"),
+		"menu":  "dashboard",
 	})
 }
 
@@ -44,6 +45,7 @@ func AddArticleView(c *gin.Context) {
 	c.HTML(http.StatusOK, "admin/addArticle", gin.H{
 		"title":       utils.SiteTitle("新增文章", siteName),
 		"login":       session.Get("login"),
+		"menu":        "addArticle",
 		"categories":  categories,
 		"errorMsgs":   errorMsgs,
 		"successMsgs": successMsgs,
@@ -141,6 +143,7 @@ func UpdateArticleView(c *gin.Context) {
 	c.HTML(http.StatusOK, "admin/updateArticle", gin.H{
 		"title":       utils.SiteTitle("更新文章", siteName),
 		"login":       session.Get("login"),
+		"menu":        "none",
 		"article":     article,
 		"categories":  categories,
 		"errorMsgs":   errorMsgs,
@@ -205,6 +208,7 @@ func CategoriesView(c *gin.Context) {
 	c.HTML(http.StatusOK, "admin/categories", gin.H{
 		"title":       utils.SiteTitle("分类管理", siteName),
 		"login":       session.Get("login"),
+		"menu":        "categories",
 		"categories":  categories,
 		"errorMsgs":   errorMsgs,
 		"successMsgs": successMsgs,
