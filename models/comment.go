@@ -38,3 +38,10 @@ func GetArticleComments(articleID uint64) (*sql.Rows, error) {
 	defer stmt.Close()
 	return stmt.Query(articleID)
 }
+
+// CommentsCount returns count of comment
+func CommentsCount() uint64 {
+	var count uint64
+	db.QueryRow("SELECT COUNT(*) FROM comment").Scan(&count)
+	return count
+}

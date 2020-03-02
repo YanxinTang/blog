@@ -1,0 +1,20 @@
+{{define "admin/dashboard"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "head" .}}
+  <link href="/static/css/chunk.6.381a4a83.css" rel="stylesheet"><link href="/static/css/chunk.1.eeabb807.css" rel="stylesheet"><link href="/static/css/chunk.5.4784aa56.css" rel="stylesheet"></head>
+  <body>
+    {{template "header" .}}
+    {{template "admin/sidebar" .}}
+    <div class="main">
+      {{range $card := .cards}}
+      <div class="card">
+        <div class="card-title">{{$card.Title}}</div>
+        <div class="card-body text-center">{{$card.Body}}</div>
+      </div>
+      {{end}}
+    </div>
+  <script type="text/javascript" src="/static/js/manifest.f3ca38b9.js"></script><script type="text/javascript" src="/static/js/pages.c0bd39a4.js"></script><script type="text/javascript" src="/static/js/admin.aa69ed45.js"></script><script type="text/javascript" src="/static/js/dashboard.04fc95a4.js"></script></body>
+</html>
+{{end}}

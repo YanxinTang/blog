@@ -1,0 +1,52 @@
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px 0;
+
+  .form-group__label {
+    flex-basis: 100px;
+    color: #606266;
+  }
+}
+
+.form-group__content {
+  flex: 1;
+}
+
+.form-group__content input {
+  height: 32px;
+}
+
+.form-group__content textarea, 
+.form-group__content select, 
+.form-group__content input {
+  width: 100%;
+  padding: 5px 15px;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  font-size: 14px;
+  font-family: helvetica neue,luxi sans,dejavu sans,Tahoma,hiragino sans gb,microsoft yahei,sans-serif;
+
+  &:read-only{
+    background: #f5f7fa;
+    border-color: #dcdfe6!important;
+  }
+}
+
+.form-group__content textarea {
+  resize: vertical;
+}
+
+.form-group__content textarea:focus, 
+.form-group__content input:focus {
+  outline: none;
+  border-color: #ccc;
+}
+
+.form .submit {
+  margin-left: 100px;
+}

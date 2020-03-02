@@ -1,0 +1,19 @@
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, td {
+  vertical-align: bottom;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.table thead th {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.table tbody td {
+  border-bottom: 1px solid #e5e5e5;
+}

@@ -15,10 +15,29 @@ import (
 
 func DashBoardView(c *gin.Context) {
 	session := sessions.Default(c)
+
+	articlesCount := models.ArticlesCount()
+	categoriesCount := models.CategoriesCount()
+	commentsCount := models.CommentsCount()
+
+	type Card struct {
+		Title string
+		Body  string
+	}
+
+	cards := []Card{}
+	cards = append(
+		cards,
+		Card{"分类数量", strconv.FormatUint(categoriesCount, 10)},
+		Card{"文章数量", strconv.FormatUint(articlesCount, 10)},
+		Card{"评论数量", strconv.FormatUint(commentsCount, 10)},
+	)
+
 	c.HTML(http.StatusOK, "admin/dashboard", gin.H{
 		"title": utils.SiteTitle("总览", siteName),
 		"login": session.Get("login"),
 		"menu":  "dashboard",
+		"cards": cards,
 	})
 }
 

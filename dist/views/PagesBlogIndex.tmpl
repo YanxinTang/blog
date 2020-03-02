@@ -1,0 +1,35 @@
+{{define "blog/index"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "head" .}}
+  <link href="/static/css/chunk.6.381a4a83.css" rel="stylesheet"><link href="/static/css/chunk.3.b8c5c7b6.css" rel="stylesheet"></head>
+  <body>
+    {{template "header" .}}
+    <section class="container">
+      {{range $article := .articles}}
+      <article class="article">
+        <div class="article-header">
+          <a href="/articles/{{$article.ID}}" class="article-header__title">{{$article.Title}}</a>
+          <div class="article-header__meta">
+            <div class="article-header__category">
+              <i class="iconfont icon-tag"></i>
+              {{$article.Category.Name}}
+            </div>
+            <div class="article-header__date">
+              <i class="iconfont icon-time"></i>
+              {{$article.UpdatedAt|Date}}
+            </div>
+          </div>
+        </div>
+        <div class="article-summary markdown">
+          {{$article.Content|Summary|Safe}}
+        </div>
+      </article>
+      {{end}}
+      {{.pagination}}
+    </section>
+    {{template "footer"}}
+  <script type="text/javascript" src="/static/js/manifest.f3ca38b9.js"></script><script type="text/javascript" src="/static/js/pages.c0bd39a4.js"></script><script type="text/javascript" src="/static/js/blog.54e8ed4a.js"></script></body>
+</html>
+{{end}}

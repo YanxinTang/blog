@@ -1,0 +1,30 @@
+
+.pagination {
+  list-style: none;
+  display: flex;
+  flex-flow: col nowrap;
+}
+
+.pagination-item {
+  padding: 1rem;
+  color: #666;
+}
+
+.pagination-item.active {
+  color: #42b983;
+  border-bottom: 1px solid #42b983;
+}
+
+.pagination-item__link {
+  text-decoration: none;
+}
+
+.pagination-item__link:link,
+.pagination-item__link:visited {
+  font-weight: bold;
+  color: inherit;
+}
+
+.pagination-item__link:hover {
+  color: #7acea8;
+}

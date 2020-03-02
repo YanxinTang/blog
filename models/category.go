@@ -47,3 +47,10 @@ func GetCategories(args ...interface{}) (*sql.Rows, error) {
 func DeleteCategory(categoryID uint64) (sql.Result, error) {
 	return db.Exec("DELETE FROM category WHERE id = ?", categoryID)
 }
+
+// CategoriesCount returns count of categories
+func CategoriesCount() uint64 {
+	var count uint64
+	db.QueryRow("SELECT COUNT(*) FROM category").Scan(&count)
+	return count
+}

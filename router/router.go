@@ -23,7 +23,7 @@ func SetupRouter() *gin.Engine {
 		"Summary":  Summary,
 		"Config":   Config,
 	})
-	r.LoadHTMLGlob("dist/views/**/*.tmpl")
+	r.LoadHTMLGlob("dist/views/*.tmpl")
 	r.Static("static", "dist/static")
 
 	public := r.Group("")
