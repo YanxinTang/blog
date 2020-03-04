@@ -4,21 +4,23 @@
     <a href="/" class="navbar-brand">
       <img src="/static/images/logo.png" alt="Logo">
     </a>
-    <ul class="navbar-nav flex-right">
-      {{if .login}}
-      <li class="nav-item">
-        <form action="/logout" method="post">
-          <button class="logout-btn" title="注销"><i class="iconfont icon-happy"></i></button>
-        </form>
-      </li>
-      {{else}}
-      <li class="nav-item">
-        <a href="/login" class="login-btn" title="登录">
-          <i class="iconfont icon-sad"></i>
-        </a>
-      </li>
-      {{end}}
-    </ul>
+    <div class="nav-right">
+    {{if .login}}
+      <div class="nav-right-dropdown-toggle">
+        {{ Config.Auth.Username }}
+      </div>
+      <ul class="nav-menu hidden">
+        <li class="nav-menu-item">
+          <a href="/admin/">控制台</a>
+        </li>
+        <li class="nav-menu-item">
+          <form action="/logout" method="post">
+            <button title="注销">注销</button>
+          </form>
+        </li>
+      </ul>
+    {{end}}
+    </div>
   </nav>
 </header>
 {{end}}

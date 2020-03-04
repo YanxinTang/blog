@@ -20,3 +20,50 @@
 .login-btn {
   color: #2c3e50;
 }
+
+.nav-right {
+  margin-left: auto;
+  position: relative;
+  width: auto;
+}
+
+.nav-right-dropdown-toggle {
+  padding: .6rem 1rem;
+  cursor: pointer;
+}
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  list-style: none;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  width: 200px;
+  box-shadow: 0 0 20px #e4e8eb;
+  background: #FFF;
+  
+}
+
+.nav-menu-item {
+  text-align: inherit;
+  white-space: nowrap;
+}
+
+.nav-menu-item + .nav-menu-item {
+  border-top: 1px solid #eee;
+}
+
+.nav-menu-item a, .nav-menu-item button {
+  padding: .5rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: inherit;
+  color: #2c3e50;
+}
