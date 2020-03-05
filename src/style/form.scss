@@ -1,4 +1,3 @@
-
 .form-group {
   width: 100%;
   display: flex;
@@ -30,6 +29,7 @@
   border: 1px solid #dcdfe6;
   font-size: 14px;
   font-family: helvetica neue,luxi sans,dejavu sans,Tahoma,hiragino sans gb,microsoft yahei,sans-serif;
+  box-shadow: none;
 
   &:read-only{
     background: #f5f7fa;
