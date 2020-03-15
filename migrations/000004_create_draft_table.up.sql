@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `draft` (
   `category_id` bigint(20) unsigned NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL DEFAULT '',
+  `published` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
