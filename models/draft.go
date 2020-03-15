@@ -10,6 +10,7 @@ type Draft struct {
 	Category   `binding:"-"`
 	Title      string `json:"title" binding:"required"`
 	Content    string `json:"content"`
+	Publish    bool
 }
 
 func InsertDraft(draft *Draft) (sql.Result, error) {
@@ -44,17 +45,39 @@ func UpdateDraft(draft *Draft) (sql.Result, error) {
 	)
 }
 
-func GetDraftsByPage(page uint64, perPage uint64) (*sql.Rows, error) {
+func GetUnpublishedDraftsByPage(page uint64, perPage uint64) (*sql.Rows, error) {
 	start := (page - 1) * perPage
 	return db.Query(
-		"SELECT draft.*, category.name FROM `draft` INNER JOIN `category` ON draft.category_id = category.id ORDER BY `updated_at` DESC LIMIT ?, ?",
+		"SELECT draft.*, category.name FROM `draft` INNER JOIN `category` ON draft.category_id = category.id WHERE draft.published = 0 ORDER BY `updated_at` DESC LIMIT ?, ?",
 		start,
 		perPage,
 	)
 }
 
-func DraftsCount() uint64 {
+func UnpublishedDraftsCount() uint64 {
 	var count uint64
-	db.QueryRow("SELECT COUNT(*) FROM draft").Scan(&count)
+	db.QueryRow("SELECT COUNT(*) FROM draft WHERE draft.published = 0").Scan(&count)
 	return count
+}
+
+func PublishDraft(draftID uint64) error {
+	tx, err := db.Begin()
+	if err != nil {
+		return err
+	}
+	_, err = tx.Exec(
+		"INSERT INTO `article` (`category_id`, `title`, `content`) SELECT `category_id`, `title`, `content` FROM `draft` WHERE `draft`.`id` = ?",
+		draftID,
+	)
+	if err != nil {
+		_ = tx.Rollback()
+	}
+	_, err = tx.Exec("UPDATE `draft` SET `published` = 1 WHERE id = ?", draftID)
+	if err != nil {
+		_ = tx.Rollback()
+	}
+	if err = tx.Commit(); err != nil {
+		return err
+	}
+	return nil
 }

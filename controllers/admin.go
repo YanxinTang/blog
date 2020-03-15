@@ -290,7 +290,7 @@ func DraftsView(c *gin.Context) {
 			return
 		}
 	}
-	rows, err := models.GetDraftsByPage(page, PerPage)
+	rows, err := models.GetUnpublishedDraftsByPage(page, PerPage)
 	if err != nil {
 		c.Error(err).SetType(http.StatusNotFound)
 		return
@@ -303,6 +303,7 @@ func DraftsView(c *gin.Context) {
 			&draft.CategoryID,
 			&draft.Title,
 			&draft.Content,
+			&draft.Publish,
 			&draft.CreatedAt,
 			&draft.UpdatedAt,
 			&draft.Category.Name,
@@ -312,7 +313,7 @@ func DraftsView(c *gin.Context) {
 		}
 		drafts = append(drafts, &draft)
 	}
-	count := models.DraftsCount()
+	count := models.UnpublishedDraftsCount()
 	pagination := NewPagination(count, page, PerPage, "/admin/drafts/page/%d").Init()
 
 	session := sessions.Default(c)
@@ -345,6 +346,7 @@ func UpdateDraftView(c *gin.Context) {
 		&draft.CategoryID,
 		&draft.Title,
 		&draft.Content,
+		&draft.Publish,
 		&draft.CreatedAt,
 		&draft.UpdatedAt,
 		&draft.Category.Name,
@@ -474,4 +476,20 @@ func DeleteDraft(c *gin.Context) {
 
 	c.Redirect(http.StatusFound, "/admin/drafts/")
 	return
+}
+
+func PublishDraft(c *gin.Context) {
+	draftID, err := strconv.ParseUint(c.Param("draftID"), 10, 64)
+	if err != nil {
+		c.HTML(http.StatusNotFound, "error/404", nil)
+		return
+	}
+	err = models.PublishDraft(draftID)
+	session := sessions.Default(c)
+	if err != nil {
+		session.AddFlash("errorMsgs", "服务器开小差了，请稍后重试")
+		c.Redirect(http.StatusFound, "/drafts")
+		return
+	}
+	c.Redirect(http.StatusFound, "/admin/drafts")
 }

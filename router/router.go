@@ -58,6 +58,7 @@ func SetupRouter() *gin.Engine {
 			admin.GET("/drafts/page/:page", controllers.DraftsView)
 			admin.GET("/drafts/edit/:draftID", controllers.UpdateDraftView)
 			admin.DELETE("/drafts/:draftID", controllers.DeleteDraft)
+			admin.PUT("/drafts/publish/:draftID", controllers.PublishDraft)
 		}
 	}
 

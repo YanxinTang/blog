@@ -11,7 +11,7 @@
       {{template "messages" .}}
       <div class="message error hidden"></div>
       <div class="post-form">
-        <form class="form" id="editForm" method="POST" action="/admin/draft/publish">
+        <form class="form" id="editForm" method="POST" action="/admin/drafts/publish/{{.draft.ID}}">
           <input type="hidden" name="_method" value="PUT">
           <div class="form-group">
             <label class="form-group__label" for="titleInput">标题：</label>
