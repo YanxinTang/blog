@@ -103,7 +103,7 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           name: 'vendors',
-          filename: 'js/vendors.js',
+          filename: 'static/js/vendors.js',
           priority: 2,
           reuseExistingChunk: true
         },
@@ -111,7 +111,7 @@ module.exports = {
           test: /\.m?js$/,
           chunks: 'all',
           name: 'common',
-          filename: 'js/common.js',
+          filename: 'static/js/common.js',
           minSize: 0,
           minChunks: 2,
           priority: 1,

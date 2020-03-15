@@ -22,6 +22,12 @@
         <span class="menu-item-name">分类管理</span>
       </a>
     </li>
+    <li class="menu-item {{ if eq "drafts" .menu }}active{{end}}">
+      <a href="/admin/drafts">
+        <i class="iconfont icon-draft"></i>
+        <span class="menu-item-name">草稿箱</span>
+      </a>
+    </li>
   </ul>
 </div>
 {{end}}

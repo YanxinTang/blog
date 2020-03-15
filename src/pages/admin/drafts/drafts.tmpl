@@ -1,0 +1,36 @@
+{{define "admin/drafts"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "head" .}}
+  </head>
+  <body>
+    {{template "header" .}}
+    {{template "admin/sidebar" .}}
+    <div class="main">
+      {{template "messages" .}}
+      {{range $draft := .drafts}}
+      <article class="article">
+        <div class="article-header">
+          <a href="/admin/drafts/edit/{{$draft.ID}}" class="article-header__title">{{$draft.Title}}</a>
+          <div class="article-header__meta">
+            <div class="article-header__category">
+              <i class="iconfont icon-tag"></i>
+              {{$draft.Category.Name}}
+            </div>
+            <div class="article-header__date">
+              <i class="iconfont icon-time"></i>
+              {{$draft.UpdatedAt|Date}}
+            </div>
+          </div>
+        </div>
+        <div class="article-summary markdown">
+          {{$draft.Content|Summary|Safe}}
+        </div>
+      </article>
+      {{end}}
+      {{.pagination}}
+    </div>
+  </body>
+</html>
+{{end}}

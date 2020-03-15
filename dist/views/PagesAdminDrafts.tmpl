@@ -1,0 +1,36 @@
+{{define "admin/drafts"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{template "head" .}}
+  <link href="/static/css/chunk.11.14bc13d0.css" rel="stylesheet"><link href="/static/css/chunk.4.c478168d.css" rel="stylesheet"><link href="/static/css/chunk.9.95eacead.css" rel="stylesheet"></head>
+  <body>
+    {{template "header" .}}
+    {{template "admin/sidebar" .}}
+    <div class="main">
+      {{template "messages" .}}
+      {{range $draft := .drafts}}
+      <article class="article">
+        <div class="article-header">
+          <a href="/admin/drafts/edit/{{$draft.ID}}" class="article-header__title">{{$draft.Title}}</a>
+          <div class="article-header__meta">
+            <div class="article-header__category">
+              <i class="iconfont icon-tag"></i>
+              {{$draft.Category.Name}}
+            </div>
+            <div class="article-header__date">
+              <i class="iconfont icon-time"></i>
+              {{$draft.UpdatedAt|Date}}
+            </div>
+          </div>
+        </div>
+        <div class="article-summary markdown">
+          {{$draft.Content|Summary|Safe}}
+        </div>
+      </article>
+      {{end}}
+      {{.pagination}}
+    </div>
+  <script type="text/javascript" src="/static/js/vendors.d895cf57.js"></script><script type="text/javascript" src="/static/js/common.40a95089.js"></script><script type="text/javascript" src="/static/js/manifest.f3ca38b9.js"></script><script type="text/javascript" src="/static/js/pages.0a5f6e7d.js"></script><script type="text/javascript" src="/static/js/admin.9034cff3.js"></script><script type="text/javascript" src="/static/js/drafts.3400eb3e.js"></script></body>
+</html>
+{{end}}

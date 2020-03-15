@@ -1,3 +1,5 @@
+@import "../../style/variable.scss";
+
 .header {
   position: fixed;
   top: 0;
@@ -111,4 +113,11 @@
     margin-top: 80px;
     margin-left: 320px;
   }
+}
+
+#lastSaveTime{
+  color: map-get($lightTheme, "info");
+  font-size: 0.8rem;
+  align-self: flex-end;
+  padding: 0 10px;
 }

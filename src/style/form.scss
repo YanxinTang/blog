@@ -52,6 +52,10 @@ input[type=text], input[type=password], textarea, select {
   border-color: #ccc;
 }
 
-.form .submit {
+.form>.button-group {
+  margin-left: 100px;
+}
+
+.form>.submit {
   margin-left: 100px;
 }

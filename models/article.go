@@ -31,7 +31,6 @@ func GetArticle(articleID uint64, columns ...string) (*sql.Row, error) {
 	columnPlaceholder := utils.ColumnPlaceholder(columns...)
 	sql := fmt.Sprintf("SELECT %s FROM article WHERE id = ?", columnPlaceholder)
 	return db.QueryRow(sql, articleID), nil
-
 }
 
 func DeleteArticle(articleID uint64) (sql.Result, error) {

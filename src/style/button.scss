@@ -1,18 +1,3 @@
-.button-group {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  background: #eee;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-}
-
-.button-group .btn + .button-group .btn{
-  margin-left: 10px;
-}
-
 .btn {
   display: inline-block;
   line-height: 1;
@@ -30,4 +15,71 @@
   padding: 8px 20px;
   font-size: 14px;
   border-radius: 4px;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+.btn .iconfont {
+  font-size: 14px;
+}
+
+.btn .icon-loading {
+  display: none;
+  animation: rotating 2s linear infinite;
+}
+
+.btn.loading .icon-loading {
+  display: inline-block;
+}
+
+@each $name, $color in $lightTheme {
+  .btn-#{$name} {
+    color: #fff;
+    background: $color;
+    border-color: $color;
+  }
+
+  .btn-#{$name}:hover {
+    color: #fff;
+    background: rgba($color, 0.8);
+    border-color: rgba($color, 0.8);
+  }
+
+  .btn-#{$name}-plain {
+    color: $color;
+    background: white;
+    border-color: $color;
+  }
+  .btn-#{$name}-plain:hover {
+    color: white;
+    background: rgba($color, 0.8);
+    border-color: rgba($color, 0.8);
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background: #eee;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+
+  .button-group {
+    background: transparent;
+    padding: 0;
+  }
+}
+
+.button-group .btn {
+  margin-left: 10px;
 }

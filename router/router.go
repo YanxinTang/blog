@@ -54,6 +54,20 @@ func SetupRouter() *gin.Engine {
 			admin.GET("/categories", controllers.CategoriesView)
 			admin.POST("/categories", controllers.AddCategory)
 			admin.DELETE("/categories/:categoryID", controllers.DeleteCategory)
+			admin.GET("/drafts/", controllers.DraftsView)
+			admin.GET("/drafts/page/:page", controllers.DraftsView)
+			admin.GET("/drafts/edit/:draftID", controllers.UpdateDraftView)
+			admin.DELETE("/drafts/:draftID", controllers.DeleteDraft)
+		}
+	}
+
+	api := r.Group("api")
+	{
+		admin := api.Group("admin")
+		{
+			admin.Use(middleware.AuthAPI())
+			admin.PUT("/drafts/", controllers.AddDraft)
+			admin.PATCH("/drafts/", controllers.UpdateDraft)
 		}
 	}
 
