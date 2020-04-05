@@ -22,10 +22,19 @@
     text-decoration: none;
     font-weight: bold;
     border-bottom: 2px solid transparent;
+    margin-bottom: .5rem;
   }
 
   .article-header__category {
     font-size: 1rem;
+
+    .tag {
+      display: inline-block;
+      background: #42b983;
+      color: #FFF;
+      padding: 0 .5rem;
+      border-radius: 4px;
+    }
   }
 
   .article-header__date {

@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     {{template "head" .}}
-  <link href="/static/css/chunk.11.144a8bcc.css" rel="stylesheet"><link href="/static/css/chunk.6.b8c5c7b6.css" rel="stylesheet"></head>
+  <link href="/static/css/chunk.11.144a8bcc.css" rel="stylesheet"><link href="/static/css/chunk.6.11fda085.css" rel="stylesheet"></head>
   <body>
     {{template "header" .}}
     <section class="container">
@@ -14,7 +14,7 @@
           <div class="article-header__meta">
             <div class="article-header__category">
               <i class="iconfont icon-tag"></i>
-              {{$article.Category.Name}}
+              <span class="tag">{{$article.Category.Name}}</span>
             </div>
             <div class="article-header__date">
               <i class="iconfont icon-time"></i>
