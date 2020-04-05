@@ -9,6 +9,12 @@
     {{template "admin/sidebar" .}}
     <div class="main">
       {{template "messages" .}}
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active"><a href="/admin/drafts/">草稿箱</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{.draft.Title}}</li>
+        </ol>
+      </nav>
       <div class="message error hidden"></div>
       <div class="post-form">
         <form class="form" id="editForm" method="POST" action="/admin/drafts/publish/{{.draft.ID}}">

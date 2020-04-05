@@ -1,5 +1,26 @@
-.breadcrumbs {
-  ul {
-    list-style: none;
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  background: #f5f7fa;
+  border: none;
+  border-radius: 4px;
+  padding: .5rem;
+  font-size: 14px;
+
+  a {
+    color: map-get($lightTheme, "primary");
+    text-decoration: none;
+
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+  }
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding: 0 .5rem;
+    color: #6c757d;
+    content: "/";
   }
 }

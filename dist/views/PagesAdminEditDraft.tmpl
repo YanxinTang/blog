@@ -3,12 +3,18 @@
 <html lang="en">
   <head>
     {{template "head" .}}
-  <link href="/static/css/chunk.11.14bc13d0.css" rel="stylesheet"><link href="/static/css/chunk.4.c478168d.css" rel="stylesheet"><link href="/static/css/chunk.10.2ec2eec4.css" rel="stylesheet"></head>
+  <link href="/static/css/chunk.11.144a8bcc.css" rel="stylesheet"><link href="/static/css/chunk.4.4542c009.css" rel="stylesheet"><link href="/static/css/chunk.10.2ec2eec4.css" rel="stylesheet"></head>
   <body>
     {{template "header" .}}
     {{template "admin/sidebar" .}}
     <div class="main">
       {{template "messages" .}}
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active"><a href="/admin/drafts/">草稿箱</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{.draft.Title}}</li>
+        </ol>
+      </nav>
       <div class="message error hidden"></div>
       <div class="post-form">
         <form class="form" id="editForm" method="POST" action="/admin/drafts/publish/{{.draft.ID}}">
