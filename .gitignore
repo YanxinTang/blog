@@ -1,4 +1,10 @@
-*.local.*
-*.exe
-
+dist
+release
 node_modules
+
+*.local.*
+blog.exe
+blog
+
+config.json
+yarn-error.log

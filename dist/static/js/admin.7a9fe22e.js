@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{33:function(e,n,o){"use strict";o.r(n);o(34);var t=document.body.querySelector(".sidebar");document.body.querySelector(".sidebar-toggle").addEventListener("click",(function(){t.classList.toggle("expand")}))},34:function(e,n,o){}},[[33,0]]]);
